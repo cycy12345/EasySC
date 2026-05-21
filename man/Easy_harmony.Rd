@@ -1,6 +1,6 @@
 \name{Easy_harmony}
 \alias{Easy_harmony}
-\title{Batch Correction with Harmony}
+\title{使用 Harmony 进行批次校正}
 \usage{
 Easy_harmony(
   object,
@@ -12,40 +12,36 @@ Easy_harmony(
 )
 }
 \arguments{
-  \item{object}{A \code{Seurat} object. Should already
-    contain variable features (e.g. after
-    \code{\link{Easy_Normal}}).}
+  \item{object}{一个 \code{Seurat} 对象。应已包含高变基因
+    （例如在运行 \code{\link{Easy_Normal}} 之后）。}
 
-  \item{group.by}{Column name in \code{object@meta.data}
-    indicating the batch variable (e.g. \code{"Patient"},
-    \code{"sample"}).}
+  \item{group.by}{\code{object@meta.data} 中指示批次变量的
+    列名（例如 \code{"Patient"}、\code{"sample"}）。}
 
-  \item{features}{Vector of feature names to use for PCA.
-    Defaults to \code{VariableFeatures(object)}.}
+  \item{features}{用于 PCA 的基因名称向量。
+    默认为 \code{VariableFeatures(object)}。}
 
-  \item{npcs}{Number of principal components to compute.
-    Default \code{50}.}
+  \item{npcs}{要计算的主成分数量。
+    默认 \code{50}。}
 
-  \item{verbose}{Logical. Print progress messages.
-    Default \code{TRUE}.}
+  \item{verbose}{逻辑值。是否打印进度信息。
+    默认 \code{TRUE}。}
 
-  \item{...}{Additional arguments passed to
-    \code{harmony::RunHarmony}.}
+  \item{...}{额外参数传递给 \code{harmony::RunHarmony}。}
 }
 \value{
-The input \code{Seurat} object with PCA stored
-in \code{reductions$pca} and Harmony-corrected
-embeddings stored in \code{reductions$harmony}.
+输入的 \code{Seurat} 对象，PCA 结果存储在
+\code{reductions$pca} 中，Harmony 校正后的嵌入存储在
+\code{reductions$harmony} 中。
 }
 \description{
-Runs PCA on variable features followed by Harmony batch
-correction. This function is a convenience wrapper around
-\code{Seurat::RunPCA} and \code{harmony::RunHarmony}.
+对高变基因运行 PCA，然后进行 Harmony 批次校正。
+该函数是 \code{Seurat::RunPCA} 和 \code{harmony::RunHarmony}
+的便捷封装。
 }
 \details{
-The function first determines the optimal number of PCs
-via \code{\link{Easy_PC}}, then runs Harmony on PCs
-\code{1:optimal_PC}.
+该函数首先通过 \code{\link{Easy_PC}} 确定最优主成分数，
+然后在 PCs \code{1:optimal_PC} 上运行 Harmony。
 }
 \examples{
 \dontrun{

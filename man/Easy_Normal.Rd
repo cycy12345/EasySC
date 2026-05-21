@@ -1,6 +1,6 @@
 \name{Easy_Normal}
 \alias{Easy_Normal}
-\title{Normalisation, Variable Feature Selection, and Scaling}
+\title{数据标准化、高变基因筛选与缩放}
 \usage{
 Easy_Normal(
   object,
@@ -14,66 +14,59 @@ Easy_Normal(
 )
 }
 \arguments{
-  \item{object}{A \code{Seurat} object.}
+  \item{object}{一个 \code{Seurat} 对象。}
 
-  \item{use_sct}{Logical. If \code{TRUE}, additionally
-    runs \code{SCTransform} and stores the result in the
-    \code{SCT} assay. Default is \code{FALSE}.}
+  \item{use_sct}{逻辑值。若为 \code{TRUE}，则额外运行
+    \code{SCTransform} 并将结果存储在 \code{SCT} assay 中。
+    默认值为 \code{FALSE}。}
 
-  \item{vars.to.regress}{Variables to regress out during
-    \code{ScaleData} and/or \code{SCTransform} (e.g.
-    \code{c("percent.mt", "nCount_RNA")}). Default is
-    \code{NULL}.}
+  \item{vars.to.regress}{在 \code{ScaleData} 和/或
+    \code{SCTransform} 中要回归去除的变量（例如
+    \code{c("percent.mt", "nCount_RNA")}）。默认 \code{NULL}。}
 
-  \item{scale.factor}{Scale factor for
-    \code{NormalizeData}. Default \code{10000} (CP10K).}
+  \item{scale.factor}{\code{NormalizeData} 的缩放因子。
+    默认 \code{10000}（CP10K）。}
 
-  \item{nfeatures}{Number of highly variable features to
-    select. Default \code{2000}.}
+  \item{nfeatures}{要筛选的高变基因数量。默认 \code{2000}。}
 
-  \item{assay}{Assay to use. Default \code{"RNA"}.}
+  \item{assay}{使用的 assay 名称。默认 \code{"RNA"}。}
 
-  \item{verbose}{Logical. Print detailed messages.
-    Default \code{TRUE}.}
+  \item{verbose}{逻辑值。是否打印详细信息。
+    默认 \code{TRUE}。}
 
-  \item{...}{Additional arguments passed to
-    \code{NormalizeData}, \code{FindVariableFeatures},
-    \code{ScaleData}, or \code{SCTransform}.}
+  \item{...}{额外参数传递给 \code{NormalizeData}、
+    \code{FindVariableFeatures}、\code{ScaleData} 或
+    \code{SCTransform}。}
 }
 \value{
-The input \code{Seurat} object with
-normalised data, scaled data, and variable features
-stored in the specified assay. If \code{use_sct = TRUE},
-an additional \code{SCT} assay is created and set as
-default.
+输入的 \code{Seurat} 对象，在指定的 assay 中存储了标准化数据、
+缩放数据和高变基因。若 \code{use_sct = TRUE}，则额外创建
+\code{SCT} assay 并将其设为默认。
 }
 \description{
-Performs standard Seurat normalisation
-(\code{LogNormalize}), identifies highly variable
-features, and scales the data. Optionally runs
-\code{SCTransform} for variance-stabilising
-transformation.
+执行标准的 Seurat 标准化流程（\code{LogNormalize}）、
+筛选高变基因并缩放数据。可选运行 \code{SCTransform}
+进行方差稳定变换。
 }
 \details{
-When \code{use_sct = TRUE}, the function prints
-downstream-analysis recommendations, e.g.:
+当 \code{use_sct = TRUE} 时，函数会打印下游分析建议：
 \itemize{
-  \item Differential expression --- use \code{RNA} assay,
-    \code{data} slot.
-  \item Visualisation / dimensionality reduction --- use
-    \code{SCT} assay, \code{scale.data} slot.
-  \item Cell-cell communication --- use \code{SCT} assay,
-    \code{data} slot.
+  \item 差异表达分析 --- 使用 \code{RNA} assay 的
+    \code{data} slot。
+  \item 可视化 / 降维 --- 使用 \code{SCT} assay 的
+    \code{scale.data} slot。
+  \item 细胞通讯分析 --- 使用 \code{SCT} assay 的
+    \code{data} slot。
 }
-If the \pkg{glmGamPoi} package is installed, it is
-automatically leveraged by \code{SCTransform} for speed.
+如果安装了 \pkg{glmGamPoi} 包，\code{SCTransform} 会自动
+利用它来加速计算。
 }
 \examples{
 \dontrun{
-  # Standard LogNormalize workflow
+  # 标准 LogNormalize 流程
   sce_norm <- Easy_Normal(sce, use_sct = FALSE)
 
-  # With SCTransform and mitochondrial regression
+  # 启用 SCTransform 并回归线粒体基因比例
   sce_norm <- Easy_Normal(sce, use_sct = TRUE,
                           vars.to.regress = "percent.mt")
 }

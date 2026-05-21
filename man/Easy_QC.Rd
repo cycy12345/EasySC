@@ -1,6 +1,6 @@
 \name{Easy_QC}
 \alias{Easy_QC}
-\title{Quality Control for scRNA-seq Data}
+\title{单细胞 RNA 测序数据质控}
 \usage{
 Easy_QC(
   object,
@@ -17,56 +17,54 @@ Easy_QC(
 )
 }
 \arguments{
-  \item{object}{A \code{Seurat} object. Must contain \code{nFeature_RNA}
-    and \code{nCount_RNA} in its metadata.}
+  \item{object}{一个 \code{Seurat} 对象。其元数据中必须包含
+    \code{nFeature_RNA} 和 \code{nCount_RNA}。}
 
-  \item{species}{Species identifier. Either \code{"human"} (default) or
-    \code{"mouse"}. Determines the gene-name patterns used for MT, RP,
-    and HB detection.}
+  \item{species}{物种标识。可选 \code{"human"}（默认）或
+    \code{"mouse"}。决定用于检测 MT、RP 和 HB 的基因名称匹配模式。}
 
-  \item{MT}{Threshold for mitochondrial gene percentage (\\%). Cells with
-    \code{percent.mt >= MT} are removed. Default is \code{5}.}
+  \item{MT}{线粒体基因百分比阈值（\%）。\code{percent.mt >= MT} 的
+    细胞将被去除。默认值为 \code{5}。}
 
-  \item{RP}{Threshold for ribosomal gene percentage (\\%). Cells with
-    \code{percent.rp >= RP} are removed. Default is \code{5}.}
+  \item{RP}{核糖体基因百分比阈值（\%）。\code{percent.rp >= RP} 的
+    细胞将被去除。默认值为 \code{5}。}
 
-  \item{HB}{Threshold for haemoglobin gene percentage (\\%). Cells with
-    \code{percent.hb >= HB} are removed. Default is \code{1}.}
+  \item{HB}{血红蛋白基因百分比阈值（\%）。\code{percent.hb >= HB} 的
+    细胞将被去除。默认值为 \code{1}。}
 
-  \item{Feature_high}{Upper bound for \code{nFeature_RNA}. Cells with
-    \code{nFeature_RNA > Feature_high} are removed. Default \code{5000}.}
+  \item{Feature_high}{\code{nFeature_RNA} 的上限。\code{nFeature_RNA > Feature_high}
+    的细胞将被去除。默认 \code{5000}。}
 
-  \item{Feature_low}{Lower bound for \code{nFeature_RNA}. Cells with
-    \code{nFeature_RNA < Feature_low} are removed. Default \code{200}.}
+  \item{Feature_low}{\code{nFeature_RNA} 的下限。\code{nFeature_RNA < Feature_low}
+    的细胞将被去除。默认 \code{200}。}
 
-  \item{plot_group}{Column name in \code{object@meta.data} for grouping
-    the violin plots (e.g. \code{"sample"}, \code{"Patient"}). If
-    \code{NULL}, defaults to \code{"orig.ident"}.}
+  \item{plot_group}{\code{object@meta.data} 中用于分组绘制小提琴图的
+    列名（例如 \code{"sample"}、\code{"Patient"}）。
+    如果为 \code{NULL}，则默认为 \code{"orig.ident"}。}
 
-  \item{color}{A vector of colours for \code{ggpubr::ggviolin}.
-    Default is a 9-colour pastel palette.}
+  \item{color}{用于 \code{ggpubr::ggviolin} 的颜色向量。
+    默认为 9 色柔和配色板。}
 }
 \value{
-A named \code{list} with three elements:
+一个命名的 \code{list}，包含三个元素：
 \itemize{
-  \item \code{sce_filter}: The \code{Seurat} object after filtering.
-  \item \code{plot_Count_Feature}: Violin plot of
-    \code{nFeature_RNA} and \code{nCount_RNA}.
-  \item \code{plot_percent}: Violin plot of \code{percent.mt},
-    \code{percent.rp}, and \code{percent.hb}.
+  \item \code{sce_filter}: 过滤后的 \code{Seurat} 对象。
+  \item \code{plot_Count_Feature}: \code{nFeature_RNA} 和
+    \code{nCount_RNA} 的小提琴图。
+  \item \code{plot_percent}: \code{percent.mt}、
+    \code{percent.rp} 和 \code{percent.hb} 的小提琴图。
 }
 }
 \description{
-Computes mitochondrial (MT), ribosomal (RP), and haemoglobin (HB)
-gene percentages; filters low-quality cells; and returns violin plots
-for \code{nFeature_RNA}, \code{nCount_RNA}, and the three percentage
-metrics.
+计算线粒体（MT）、核糖体（RP）和血红蛋白（HB）基因百分比；
+过滤低质量细胞；并返回 \code{nFeature_RNA}、\code{nCount_RNA}
+以及上述三个百分比指标的小提琴图。
 }
 \details{
-Gene patterns:
+基因匹配模式：
 \itemize{
-  \item Human --- MT: \code{^MT-}, RP: \code{^RP[sl]}, HB: \code{^HB[^(p)]}
-  \item Mouse --- MT: \code{^Mt-}, RP: \code{^Rp[sl]}, HB: \code{^Hb[^(p)]}
+  \item 人类 --- MT: \code{^MT-}, RP: \code{^RP[sl]}, HB: \code{^HB[^(p)]}
+  \item 小鼠 --- MT: \code{^Mt-}, RP: \code{^Rp[sl]}, HB: \code{^Hb[^(p)]}
 }
 }
 \examples{
