@@ -1,0 +1,40 @@
+Package: EasySC
+Type: Package
+Title: Easy Single-Cell RNA Sequencing Analysis Pipeline
+Version: 0.1.0
+Authors@R: c(
+    person("Mating", "Chenyong", email = "1962140509@qq.com", role = c("aut", "cre"))
+  )
+Description: A streamlined and user-friendly pipeline for single-cell RNA
+    sequencing (scRNA-seq) data analysis. EasySC wraps popular Bioconductor
+    and CRAN packages (Seurat, Harmony, scDblFinder, scCDC, etc.) into a
+    cohesive workflow, providing one-step functions for quality control,
+    normalization, batch correction, clustering, doublet removal, and
+    ambient RNA decontamination. 
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.3.0
+biocViews: SingleCell, RNASeq, Sequencing, Transcriptomics,
+    DimensionReduction, Clustering
+Imports:
+    Seurat (>= 4.0.0),
+    ggplot2 (>= 3.3.0),
+    cli (>= 3.0.0),
+    tidyr (>= 1.2.0),
+    dplyr (>= 1.0.0),
+    ggpubr (>= 0.4.0)
+Suggests:
+    scDblFinder (>= 1.8.0),
+    BiocParallel (>= 1.28.0),
+    harmony (>= 0.1.0),
+    clustree (>= 0.5.0),
+    scCDC (>= 1.0.0),
+    decontX (>= 1.0.0),
+    glmGamPoi (>= 1.8.0),
+    SCTransform,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+URL: https://github.com/cycy12345/EasySC
+BugReports: https://github.com/cycy12345/EasySC/issues
