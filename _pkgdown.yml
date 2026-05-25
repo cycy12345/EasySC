@@ -1,0 +1,42 @@
+url: https://github.com/cycy12345/EasySC
+template:
+  bootstrap: 5
+  bootswatch: flatly
+
+navbar:
+  structure:
+    left:  [intro, reference, articles, tutorials, news]
+    right: [search, github]
+  components:
+    intro:
+      text: 简介
+      href: index.html
+    reference:
+      text: 函数文档
+      href: reference/index.html
+
+reference:
+  - title: 质控与过滤
+    desc: 双细胞检测和数据质量控制
+    contents:
+      - Easy_DbFinder
+      - Easy_QC
+  - title: 标准化与降维
+    desc: 数据标准化、批次校正和主成分选择
+    contents:
+      - Easy_Normal
+      - Easy_harmony
+      - Easy_PC
+  - title: 聚类与去污染
+    desc: 多分辨率聚类和环境RNA去污染
+    contents:
+      - Easy_clustree
+      - Easy_CDC
+
+home:
+  links:
+    - text: GitHub 仓库
+      href: https://github.com/cycy12345/EasySC
+
+development:
+  mode: auto
