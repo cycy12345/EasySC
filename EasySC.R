@@ -68,8 +68,6 @@ Easy_DbFinder <- function(object, dbr = 0.08, group_by = NULL) {
   list(sce_filter = object, plot = p)
 }
 
-species = "human", MT = 5, RP = 5, HB = 1,
-                   Feature_high = 5000, Feature_low = 200
 
 
 Easy_QC <- function(object, species = "human", MT = 5, RP = 5, HB = 1,
@@ -110,7 +108,7 @@ Easy_QC <- function(object, species = "human", MT = 5, RP = 5, HB = 1,
                      nFeature_RNA < Feature_high &
                      percent.mt < MT &
                      percent.rp < RP &
-                     percent.hb < HB)
+                     percent.hb > HB)
   message("过滤后细胞数：", ncol(object))
   
   # Step 4: 提取数据

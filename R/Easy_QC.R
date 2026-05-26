@@ -101,7 +101,7 @@ Easy_QC <- function(object, species = "human", MT = 5, RP = 5, HB = 1,
     subset = nFeature_RNA > Feature_low &
       nFeature_RNA < Feature_high &
       percent.mt < MT &
-      percent.rp < RP &
+      percent.rp > RP &
       percent.hb < HB
   )
   message("Cells after filtering: ", ncol(object))
