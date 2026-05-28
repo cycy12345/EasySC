@@ -85,11 +85,11 @@ Easy_QC <- function(object, species = "human", MT = 5, RP = 5, HB = 1,
   cli::cli_progress_step("Calculating MT / RP / HB percentages")
   if (species == "human") {
     object[["percent.mt"]] <- Seurat::PercentageFeatureSet(object, pattern = "^MT-")
-    object[["percent.rp"]] <- Seurat::PercentageFeatureSet(object, pattern = "^RP[sl]")
+    object[["percent.rp"]] <- Seurat::PercentageFeatureSet(object, pattern = "^RPS|^RPL")
     object[["percent.hb"]] <- Seurat::PercentageFeatureSet(object, pattern = "^HB[^(p)]")
   } else if (species == "mouse") {
     object[["percent.mt"]] <- Seurat::PercentageFeatureSet(object, pattern = "^Mt-")
-    object[["percent.rp"]] <- Seurat::PercentageFeatureSet(object, pattern = "^Rp[sl]")
+    object[["percent.rp"]] <- Seurat::PercentageFeatureSet(object, pattern = "^Rps|^Rpl")
     object[["percent.hb"]] <- Seurat::PercentageFeatureSet(object, pattern = "^Hb[^(p)]")
   }
 
